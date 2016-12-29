@@ -4,6 +4,16 @@ ActiveAdmin.register Post do
 	scope :published
 	scope :unpublished
 
+	form do |f|
+		inputs "Details" do
+			input :user
+			# para " Choose the author for this post"
+			input :title
+			input :body
+		end
+		actions
+	end
+
  permit_params :title, :body, :published_at, :user_id
 
  action_item :publish, only: :show do
