@@ -1,5 +1,9 @@
 ActiveAdmin.register Post do
 
+	scope :all
+	scope :published
+	scope :unpublished
+
  permit_params :title, :body, :published_at, :user_id
 
  action_item :publish, only: :show do
@@ -15,7 +19,7 @@ ActiveAdmin.register Post do
   	post.update(published_at: Time.zone.now)
   	redirect_to admin_post_path(post)
   end
-  
+
   member_action :unpublish, method: :put do
   	post = Post.find(params[:id])
   	post.update(published_at: nil)
